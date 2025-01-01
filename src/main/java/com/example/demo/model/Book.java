@@ -25,7 +25,7 @@ public class Book {
     public Book() {
     }
 
-    public Book(String bookname, String author, int noofbooks) {
+    public Book(String bookname, String author,int noofbooks) {
         this.bookname = bookname;
         this.author = author;
         this.noofbooks = noofbooks;
