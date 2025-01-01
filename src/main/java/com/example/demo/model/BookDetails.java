@@ -6,6 +6,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 
 @Entity
@@ -19,8 +20,8 @@ public class BookDetails {
 
     private boolean isAvailable = true;
 
-    @OneToOne
-    @JoinColumn(name = "book_id", referencedColumnName = "id")
+    @ManyToOne
+    @JoinColumn(name = "book_id", referencedColumnName = "id", nullable = false)
     private Book book;
 
     public BookDetails() {

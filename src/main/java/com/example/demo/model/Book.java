@@ -12,13 +12,23 @@ public class Book {
     private Long id;
     private String bookname;
     private String author;
+    private int noofbooks;
+
+    public int getNoofbooks() {
+        return noofbooks;
+    }
+
+    public void setNoofbooks(int noofbooks) {
+        this.noofbooks = noofbooks;
+    }
 
     public Book() {
     }
 
-    public Book(String bookname, String author) {
+    public Book(String bookname, String author, int noofbooks) {
         this.bookname = bookname;
         this.author = author;
+        this.noofbooks = noofbooks;
     }
 
     public Long getId() {

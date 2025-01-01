@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 import com.example.demo.model.Book;
@@ -33,11 +35,13 @@ public class BookService {
         Book savedBook = bookRepository.save(book);
 
         // Create book number (UUID or sequential logic)
-        String bookNumber = "BK-" + UUID.randomUUID().toString().substring(0, 6);
-
-        // Save book details
-        BookDetails bookDetails = new BookDetails(savedBook, bookNumber);
-        bookDetailsRepository.save(bookDetails);
+        for (int i = 0; i < savedBook.getNoofbooks(); i++) {
+            String bookNumber = "BK-" + UUID.randomUUID().toString().substring(0, 6);
+            // Save book details
+            BookDetails bookDetails = new BookDetails(savedBook, bookNumber);
+            bookDetails.setAvailable(true);
+            bookDetailsRepository.save(bookDetails);
+        }
 
         return savedBook;
     }
