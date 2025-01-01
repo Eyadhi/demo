@@ -7,6 +7,7 @@ import com.example.demo.model.Users;
 import com.example.demo.service.UsersService;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/users")
@@ -14,22 +15,22 @@ public class UsersController {
     @Autowired
     private UsersService usersService;
 
-    @GetMapping
+    @GetMapping("/getusers")
     public List<Users> getAllUsers() {
         return usersService.getAllUsers();
     }
 
-    @GetMapping("/{id}")
-    public Users getUserById(@PathVariable Long id) {
+    @GetMapping("/getuser/{id}")
+    public Optional getUserById(@PathVariable Long id) {
         return usersService.getUserById(id);
     }
 
-    @PostMapping
+    @PostMapping("/adduser")
     public Users saveUser(@RequestBody Users user) {
         return usersService.saveUser(user);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("deleteuser/{id}")
     public void deleteUser(@PathVariable Long id) {
         usersService.deleteUser(id);
     }

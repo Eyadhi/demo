@@ -13,6 +13,14 @@ public class Book {
     private String bookname;
     private String author;
 
+    public Book() {
+    }
+
+    public Book(String bookname, String author) {
+        this.bookname = bookname;
+        this.author = author;
+    }
+
     public Long getId() {
         return id;
     }
