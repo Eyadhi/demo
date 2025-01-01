@@ -4,23 +4,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import com.example.demo.model.User;
-import com.example.demo.repository.UserRepository;
+import com.example.demo.model.Users;
+import com.example.demo.repository.UsersRepository;
 
 @Service
-public class UserService {
+public class UsersService {
     @Autowired
-    private UserRepository userRepository;
+    private UsersRepository userRepository;
 
-    public List<User> getAllUsers() {
+    public List<Users> getAllUsers() {
         return userRepository.findAll();
     }
 
-    public User getUserById(Long id) {
+    public Users getUserById(Long id) {
         return userRepository.findById(id).orElse(null);
     }
 
-    public User saveUser(User user) {
+    public Users saveUser(Users user) {
         return userRepository.save(user);
     }
 
