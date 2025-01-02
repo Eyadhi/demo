@@ -1,6 +1,7 @@
 package com.example.demo.model;
 
 import java.util.Collection;
+import java.util.List;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -12,6 +13,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 import jakarta.persistence.UniqueConstraint;
 
 @Entity
@@ -25,20 +27,30 @@ public class Users {
     private String email;
     private String password;
 
+    @Transient
+    private List<Long> roleIds;
+
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
-
     private Collection<Role> roles;
 
-    public Users(String username, String mobilenumber, String email, String password, Collection<Role> roles) {
+    public Users() {
+    }
+
+    public Users(String username, String mobilenumber, String email, String password, List<Long> roleIds) {
         this.username = username;
         this.mobilenumber = mobilenumber;
         this.email = email;
         this.password = password;
-        this.roles = roles;
+        this.roleIds = roleIds;
     }
 
-    public Users() {
+    public List<Long> getRoleIds() {
+        return roleIds;
+    }
+
+    public void setRoleIds(List<Long> roleIds) {
+        this.roleIds = roleIds;
     }
 
     public Long getId() {

@@ -3,8 +3,8 @@ package com.example.demo.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import com.example.demo.model.Users;
-import com.example.demo.service.UsersService;
+import com.example.demo.model.Borrow;
+import com.example.demo.service.BorrowService;
 
 import java.util.List;
 import java.util.Optional;
@@ -13,25 +13,21 @@ import java.util.Optional;
 @RequestMapping("/borrow")
 public class BorrowController {
     @Autowired
-    private BorrowService usersService;
+    private BorrowService borrowService;
 
-    @GetMapping("/getusers")
-    public List<Users> getAllUsers() {
-        return usersService.getAllUsers();
+    @GetMapping("/getborrows")
+    public List<Borrow> getAllBorrows() {
+        return borrowService.getAllBorrows();
     }
 
-    @GetMapping("/getuser/{id}")
-    public Optional getUserById(@PathVariable Long id) {
-        return usersService.getUserById(id);
+    @GetMapping("/getborrow/{id}")
+    public Optional getBorrowById(@PathVariable Long id) {
+        return borrowService.getBorrowById(id);
     }
 
-    @PostMapping("/adduser")
-    public Users saveUser(@RequestBody Users user) {
-        return usersService.saveUser(user);
+    @PostMapping("/addborrow")
+    public Borrow borrowBook(@RequestBody Borrow borrow) {
+        return borrowService.borrowBook(borrow);
     }
 
-    @DeleteMapping("deleteuser/{id}")
-    public void deleteUser(@PathVariable Long id) {
-        usersService.deleteUser(id);
-    }
 }
